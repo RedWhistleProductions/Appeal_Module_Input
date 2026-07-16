@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Input Module Command Reference</title>
+  <style>
+    :root { color-scheme: light dark; --bg:#f7f7f4; --fg:#1c1d20; --panel:#fff; --line:#cfd4d9; --muted:#5d6470; --accent:#15616d; }
+    @media (prefers-color-scheme:dark) { :root { --bg:#15171a; --fg:#eceff3; --panel:#1f2328; --line:#343a42; --muted:#aab2bd; --accent:#4fb3bf; } }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    main { max-width:1200px; margin:auto; padding:34px 22px 56px; }
+    h1 { margin:0 0 8px; font-size:clamp(2rem,5vw,3.2rem); }
+    .summary { color:var(--muted); margin-bottom:24px; }
+    input { width:100%; max-width:520px; margin:0 0 18px; padding:10px 12px; border:1px solid var(--line); border-radius:7px; background:var(--panel); color:var(--fg); }
+    table { width:100%; border-collapse:collapse; background:var(--panel); }
+    th,td { padding:10px 12px; border:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { background:color-mix(in srgb,var(--accent),transparent 86%); }
+    th:first-child { width:24%; } th:nth-child(2) { width:31%; }
+    code { font-family:ui-monospace,SFMono-Regular,Consolas,monospace; overflow-wrap:anywhere; }
+    footer { margin-top:20px; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Input Module</h1>
+    <p class="summary">Command reference generated from <code>src/main.cpp</code>. Arguments are shown in the order consumed by the module interpreter.</p>
+    <label for="filter">Filter commands</label><br>
+    <input id="filter" type="search" placeholder="Type a command, argument, or description">
+    <table>
+      <thead><tr><th>Command</th><th>Arguments</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><code>Init</code></td><td><code>Name: string</code></td><td>Initializes the module and loads its default plugin.</td></tr>
+        <tr><td><code>Debug</code></td><td><code>Value: string</code></td><td>Enables or disables diagnostic logging for the module and active plugin.</td></tr>
+        <tr><td><code>Set_Paths</code></td><td><code>Resources: string</code></td><td>Sets the root Appeal resources path used by the module.</td></tr>
+        <tr><td><code>Add_Control_Set</code></td><td><code>Name: string</code></td><td>Requests the module to add control set.</td></tr>
+        <tr><td><code>Set_Control_Set</code></td><td><code>Name: string</code></td><td>Requests the module to set control set.</td></tr>
+        <tr><td><code>Update</code></td><td><code>Control_Set: string</code></td><td>Advances or refreshes the module state for the current update cycle.</td></tr>
+        <tr><td><code>Bind_Key</code></td><td><code>Action: string, Key: string</code></td><td>Requests the module to bind key.</td></tr>
+        <tr><td><code>Bind_Mouse</code></td><td><code>Action: string, Button: string</code></td><td>Requests the module to bind mouse.</td></tr>
+        <tr><td><code>Bind_Button</code></td><td><code>Action: string, Button: string</code></td><td>Requests the module to bind button.</td></tr>
+        <tr><td><code>Bind_Axis</code></td><td><code>Action: string, Axis_Name: string</code></td><td>Requests the module to bind axis.</td></tr>
+        <tr><td><code>Unbind</code></td><td><code>Action: string</code></td><td>Requests the module to unbind.</td></tr>
+        <tr><td><code>Down</code></td><td><code>Action: string</code></td><td>Requests the module to down.</td></tr>
+        <tr><td><code>Pressed</code></td><td><code>Action: string</code></td><td>Requests the module to pressed.</td></tr>
+        <tr><td><code>Released</code></td><td><code>Action: string</code></td><td>Requests the module to released.</td></tr>
+        <tr><td><code>Axis</code></td><td><code>Action: string</code></td><td>Requests the module to axis.</td></tr>
+        <tr><td><code>Mouse_X</code></td><td><code>none</code></td><td>Requests the module to mouse x.</td></tr>
+        <tr><td><code>Mouse_Y</code></td><td><code>none</code></td><td>Requests the module to mouse y.</td></tr>
+        <tr><td><code>Mouse_Delta_X</code></td><td><code>none</code></td><td>Requests the module to mouse delta x.</td></tr>
+        <tr><td><code>Mouse_Delta_Y</code></td><td><code>none</code></td><td>Requests the module to mouse delta y.</td></tr>
+        <tr><td><code>Mouse_Wheel</code></td><td><code>none</code></td><td>Requests the module to mouse wheel.</td></tr>
+        <tr><td><code>Mouse_Down</code></td><td><code>Button: string</code></td><td>Requests the module to mouse down.</td></tr>
+        <tr><td><code>Mouse_Pressed</code></td><td><code>Button: string</code></td><td>Requests the module to mouse pressed.</td></tr>
+        <tr><td><code>Mouse_Released</code></td><td><code>Button: string</code></td><td>Requests the module to mouse released.</td></tr>
+        <tr><td><code>Set_Key_Down</code></td><td><code>Key: string, Function: string</code></td><td>Requests the module to set key down.</td></tr>
+        <tr><td><code>Set_Key_Up</code></td><td><code>Key: string, Function: string</code></td><td>Requests the module to set key up.</td></tr>
+        <tr><td><code>Set_Mouse_Down</code></td><td><code>Button: string, Function: string</code></td><td>Requests the module to set mouse down.</td></tr>
+        <tr><td><code>Set_Mouse_Up</code></td><td><code>Button: string, Function: string</code></td><td>Requests the module to set mouse up.</td></tr>
+        <tr><td><code>Set_Controller_Button_Down</code></td><td><code>Button: string, Function: string</code></td><td>Requests the module to set controller button down.</td></tr>
+        <tr><td><code>Set_Controller_Button_Up</code></td><td><code>Button: string, Function: string</code></td><td>Requests the module to set controller button up.</td></tr>
+        <tr><td><code>Set_Controller_Axis</code></td><td><code>Axis_Name: string, Function: string</code></td><td>Requests the module to set controller axis.</td></tr>
+        <tr><td><code>Open_Controller</code></td><td><code>Controller: int</code></td><td>Requests the module to open controller.</td></tr>
+        <tr><td><code>Close_Controller</code></td><td><code>Controller: int</code></td><td>Requests the module to close controller.</td></tr>
+        <tr><td><code>Controller_Down</code></td><td><code>Controller: int, Button: string</code></td><td>Requests the module to controller down.</td></tr>
+        <tr><td><code>Controller_Pressed</code></td><td><code>Controller: int, Button: string</code></td><td>Requests the module to controller pressed.</td></tr>
+        <tr><td><code>Controller_Released</code></td><td><code>Controller: int, Button: string</code></td><td>Requests the module to controller released.</td></tr>
+        <tr><td><code>Controller_Axis</code></td><td><code>Controller: int, Axis_Name: string</code></td><td>Requests the module to controller axis.</td></tr>
+        <tr><td><code>Set_Controller_Button_Down_For</code></td><td><code>Controller: int, Button: string, Function: string</code></td><td>Requests the module to set controller button down for.</td></tr>
+        <tr><td><code>Set_Controller_Button_Up_For</code></td><td><code>Controller: int, Button: string, Function: string</code></td><td>Requests the module to set controller button up for.</td></tr>
+        <tr><td><code>Set_Controller_Axis_For</code></td><td><code>Controller: int, Axis_Name: string, Function: string</code></td><td>Requests the module to set controller axis for.</td></tr>
+        <tr><td><code>Set_Controller_Axis_Range</code></td><td><code>Controller: int, Axis_Name: string, Min: int, Max: int, Function: string</code></td><td>Requests the module to set controller axis range.</td></tr>
+      </tbody>
+    </table>
+    <footer>40 commands documented.</footer>
+  </main>
+  <script>
+    const filter = document.getElementById('filter');
+    const rows = [...document.querySelectorAll('tbody tr')];
+    filter.addEventListener('input', () => {
+      const query = filter.value.toLowerCase();
+      rows.forEach(row => row.hidden = !row.textContent.toLowerCase().includes(query));
+    });
+  </script>
+</body>
+</html>
