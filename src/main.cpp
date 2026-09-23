@@ -205,63 +205,111 @@ extern "C" void Interpreter(Data_Source *Data)
     {
         std::string Action;
         *Data >> Action;
-        if(Module_Debug) std::cout << Down(Action) << std::endl;
+        // Publish once so this getter can also be used as an expression.
+        if(Down == nullptr) throw std::runtime_error("Input getter is not initialized: Down");
+        auto Value = Down(Action);
+        Data->Return_Value(std::to_string(Value));
+        if(Module_Debug) std::cout << Value << std::endl;
     }
     else if(Command == "Pressed")
     {
         std::string Action;
         *Data >> Action;
-        if(Module_Debug) std::cout << Pressed(Action) << std::endl;
+        // Publish once so this getter can also be used as an expression.
+        if(Pressed == nullptr) throw std::runtime_error("Input getter is not initialized: Pressed");
+        auto Value = Pressed(Action);
+        Data->Return_Value(std::to_string(Value));
+        if(Module_Debug) std::cout << Value << std::endl;
     }
     else if(Command == "Released")
     {
         std::string Action;
         *Data >> Action;
-        if(Module_Debug) std::cout << Released(Action) << std::endl;
+        // Publish once so this getter can also be used as an expression.
+        if(Released == nullptr) throw std::runtime_error("Input getter is not initialized: Released");
+        auto Value = Released(Action);
+        Data->Return_Value(std::to_string(Value));
+        if(Module_Debug) std::cout << Value << std::endl;
     }
     else if(Command == "Axis")
     {
         std::string Action;
         *Data >> Action;
-        if(Module_Debug) std::cout << Axis(Action) << std::endl;
+        // Publish once so this getter can also be used as an expression.
+        if(Axis == nullptr) throw std::runtime_error("Input getter is not initialized: Axis");
+        auto Value = Axis(Action);
+        Data->Return_Value(std::to_string(Value));
+        if(Module_Debug) std::cout << Value << std::endl;
     }
     else if(Command == "Mouse_X")
     {
-        if(Module_Debug) std::cout << Mouse_X() << std::endl;
+        // Publish once so this getter can also be used as an expression.
+        if(Mouse_X == nullptr) throw std::runtime_error("Input getter is not initialized: Mouse_X");
+        auto Value = Mouse_X();
+        Data->Return_Value(std::to_string(Value));
+        if(Module_Debug) std::cout << Value << std::endl;
     }
     else if(Command == "Mouse_Y")
     {
-        if(Module_Debug) std::cout << Mouse_Y() << std::endl;
+        // Publish once so this getter can also be used as an expression.
+        if(Mouse_Y == nullptr) throw std::runtime_error("Input getter is not initialized: Mouse_Y");
+        auto Value = Mouse_Y();
+        Data->Return_Value(std::to_string(Value));
+        if(Module_Debug) std::cout << Value << std::endl;
     }
     else if(Command == "Mouse_Delta_X")
     {
-        if(Module_Debug) std::cout << Mouse_Delta_X() << std::endl;
+        // Publish once so this getter can also be used as an expression.
+        if(Mouse_Delta_X == nullptr) throw std::runtime_error("Input getter is not initialized: Mouse_Delta_X");
+        auto Value = Mouse_Delta_X();
+        Data->Return_Value(std::to_string(Value));
+        if(Module_Debug) std::cout << Value << std::endl;
     }
     else if(Command == "Mouse_Delta_Y")
     {
-        if(Module_Debug) std::cout << Mouse_Delta_Y() << std::endl;
+        // Publish once so this getter can also be used as an expression.
+        if(Mouse_Delta_Y == nullptr) throw std::runtime_error("Input getter is not initialized: Mouse_Delta_Y");
+        auto Value = Mouse_Delta_Y();
+        Data->Return_Value(std::to_string(Value));
+        if(Module_Debug) std::cout << Value << std::endl;
     }
     else if(Command == "Mouse_Wheel")
     {
-        if(Module_Debug) std::cout << Mouse_Wheel() << std::endl;
+        // Publish once so this getter can also be used as an expression.
+        if(Mouse_Wheel == nullptr) throw std::runtime_error("Input getter is not initialized: Mouse_Wheel");
+        auto Value = Mouse_Wheel();
+        Data->Return_Value(std::to_string(Value));
+        if(Module_Debug) std::cout << Value << std::endl;
     }
     else if(Command == "Mouse_Down")
     {
         std::string Button;
         *Data >> Button;
-        if(Module_Debug) std::cout << Mouse_Down(Button) << std::endl;
+        // Publish once so this getter can also be used as an expression.
+        if(Mouse_Down == nullptr) throw std::runtime_error("Input getter is not initialized: Mouse_Down");
+        auto Value = Mouse_Down(Button);
+        Data->Return_Value(std::to_string(Value));
+        if(Module_Debug) std::cout << Value << std::endl;
     }
     else if(Command == "Mouse_Pressed")
     {
         std::string Button;
         *Data >> Button;
-        if(Module_Debug) std::cout << Mouse_Pressed(Button) << std::endl;
+        // Publish once so this getter can also be used as an expression.
+        if(Mouse_Pressed == nullptr) throw std::runtime_error("Input getter is not initialized: Mouse_Pressed");
+        auto Value = Mouse_Pressed(Button);
+        Data->Return_Value(std::to_string(Value));
+        if(Module_Debug) std::cout << Value << std::endl;
     }
     else if(Command == "Mouse_Released")
     {
         std::string Button;
         *Data >> Button;
-        if(Module_Debug) std::cout << Mouse_Released(Button) << std::endl;
+        // Publish once so this getter can also be used as an expression.
+        if(Mouse_Released == nullptr) throw std::runtime_error("Input getter is not initialized: Mouse_Released");
+        auto Value = Mouse_Released(Button);
+        Data->Return_Value(std::to_string(Value));
+        if(Module_Debug) std::cout << Value << std::endl;
     }
     else if(Command == "Set_Key_Down")
     {
@@ -330,7 +378,11 @@ extern "C" void Interpreter(Data_Source *Data)
         std::string Button;
         *Data >> Controller;
         *Data >> Button;
-        if(Module_Debug) std::cout << Controller_Down(Controller, Button) << std::endl;
+        // Publish once so this getter can also be used as an expression.
+        if(Controller_Down == nullptr) throw std::runtime_error("Input getter is not initialized: Controller_Down");
+        auto Value = Controller_Down(Controller, Button);
+        Data->Return_Value(std::to_string(Value));
+        if(Module_Debug) std::cout << Value << std::endl;
     }
     else if(Command == "Controller_Pressed")
     {
@@ -338,7 +390,11 @@ extern "C" void Interpreter(Data_Source *Data)
         std::string Button;
         *Data >> Controller;
         *Data >> Button;
-        if(Module_Debug) std::cout << Controller_Pressed(Controller, Button) << std::endl;
+        // Publish once so this getter can also be used as an expression.
+        if(Controller_Pressed == nullptr) throw std::runtime_error("Input getter is not initialized: Controller_Pressed");
+        auto Value = Controller_Pressed(Controller, Button);
+        Data->Return_Value(std::to_string(Value));
+        if(Module_Debug) std::cout << Value << std::endl;
     }
     else if(Command == "Controller_Released")
     {
@@ -346,7 +402,11 @@ extern "C" void Interpreter(Data_Source *Data)
         std::string Button;
         *Data >> Controller;
         *Data >> Button;
-        if(Module_Debug) std::cout << Controller_Released(Controller, Button) << std::endl;
+        // Publish once so this getter can also be used as an expression.
+        if(Controller_Released == nullptr) throw std::runtime_error("Input getter is not initialized: Controller_Released");
+        auto Value = Controller_Released(Controller, Button);
+        Data->Return_Value(std::to_string(Value));
+        if(Module_Debug) std::cout << Value << std::endl;
     }
     else if(Command == "Controller_Axis")
     {
@@ -354,7 +414,11 @@ extern "C" void Interpreter(Data_Source *Data)
         std::string Axis_Name;
         *Data >> Controller;
         *Data >> Axis_Name;
-        if(Module_Debug) std::cout << Controller_Axis(Controller, Axis_Name) << std::endl;
+        // Publish once so this getter can also be used as an expression.
+        if(Controller_Axis == nullptr) throw std::runtime_error("Input getter is not initialized: Controller_Axis");
+        auto Value = Controller_Axis(Controller, Axis_Name);
+        Data->Return_Value(std::to_string(Value));
+        if(Module_Debug) std::cout << Value << std::endl;
     }
     else if(Command == "Set_Controller_Button_Down_For")
     {
