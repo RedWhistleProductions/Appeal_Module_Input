@@ -30,6 +30,11 @@
     <table>
       <thead><tr><th>Command</th><th>Arguments</th><th>Description</th></tr></thead>
       <tbody>
+<tr><td><code>Set_Controller_Deadzone</code></td><td>Percent: int</td><td>0..99 percent; default 24. Returns success. Axes and axis-range thresholds now use -100..100 mapped units.</td></tr>
+<tr><td><code>Set_Key_Repeat</code></td><td>Key: string, Enabled: bool</td><td>Enable held Down callback repeats every 100 ms. Default off.</td></tr>
+<tr><td><code>Set_Mouse_Repeat</code></td><td>Button: string, Enabled: bool</td><td>Enable held mouse Down repeats. Default off.</td></tr>
+<tr><td><code>Set_Controller_Button_Repeat</code></td><td>Button: string, Enabled: bool</td><td>Enable held global controller Down repeats. Default off.</td></tr>
+<tr><td><code>Set_Controller_Button_Repeat_For</code></td><td>Controller: int, Button: string, Enabled: bool</td><td>Enable held Down repeats for one controller binding. Default off.</td></tr>
         <tr><td><code>Init</code></td><td><code>Name: string</code></td><td>Initializes the module and loads its default plugin.</td></tr>
         <tr><td><code>Debug</code></td><td><code>Value: string</code></td><td>Enables or disables diagnostic logging for the module and active plugin.</td></tr>
         <tr><td><code>Set_Paths</code></td><td><code>Resources: string</code></td><td>Sets the root Appeal resources path used by the module.</td></tr>

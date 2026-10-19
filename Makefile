@@ -5,11 +5,11 @@ UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 CXX ?= g++
 	CXXFLAGS = -shared -fPIC -Wall
-	TARGET = Input.so
+	TARGET = Appeal_Module_Input.so
 else
 CXX ?= g++
 	CXXFLAGS = -shared -Wall
-	TARGET = Input.dll
+	TARGET = Appeal_Module_Input.dll
 endif
 
 SRCS = ./src/main.cpp ./src/Data_Source.cpp ./src/Plugin.cpp

@@ -1,6 +1,12 @@
 #include "Plugin.h"
 #include "Data_Source.h"
 
+bool (*Set_Controller_Deadzone)(int Percent);
+void (*Set_Key_Repeat)(std::string Key, bool Enabled);
+void (*Set_Mouse_Repeat)(std::string Button, bool Enabled);
+void (*Set_Controller_Button_Repeat)(std::string Button, bool Enabled);
+void (*Set_Controller_Button_Repeat_For)(int Controller, std::string Button, bool Enabled);
+
 Plugin Module;
 bool Module_Debug = false;
 
@@ -58,6 +64,11 @@ extern "C" void Init(std::string Name)
 {
     Module.Load(Name);
 
+    Assign("Set_Controller_Deadzone", Set_Controller_Deadzone);
+    Assign("Set_Key_Repeat", Set_Key_Repeat);
+    Assign("Set_Mouse_Repeat", Set_Mouse_Repeat);
+    Assign("Set_Controller_Button_Repeat", Set_Controller_Button_Repeat);
+    Assign("Set_Controller_Button_Repeat_For", Set_Controller_Button_Repeat_For);
     Assign("Debug", Debug);
     Assign("Set_Paths", Set_Paths);
     Assign("Add_Control_Set", Add_Control_Set);
@@ -310,6 +321,51 @@ extern "C" void Interpreter(Data_Source *Data)
         auto Value = Mouse_Released(Button);
         Data->Return_Value(std::to_string(Value));
         if(Module_Debug) std::cout << Value << std::endl;
+    }
+    else if(Command == "Set_Controller_Deadzone")
+    {
+        int Percent;
+        *Data >> Percent;
+        if(!Set_Controller_Deadzone) throw std::runtime_error("Input plugin does not support Set_Controller_Deadzone");
+        Data->Return_Value(Set_Controller_Deadzone(Percent) ? "1" : "0");
+    }
+    else if(Command == "Set_Key_Repeat")
+    {
+        std::string Key;
+        *Data >> Key;
+        bool Enabled;
+        *Data >> Enabled;
+        if(!Set_Key_Repeat) throw std::runtime_error("Input plugin does not support Set_Key_Repeat");
+        Set_Key_Repeat(Key, Enabled);
+    }
+    else if(Command == "Set_Mouse_Repeat")
+    {
+        std::string Button;
+        *Data >> Button;
+        bool Enabled;
+        *Data >> Enabled;
+        if(!Set_Mouse_Repeat) throw std::runtime_error("Input plugin does not support Set_Mouse_Repeat");
+        Set_Mouse_Repeat(Button, Enabled);
+    }
+    else if(Command == "Set_Controller_Button_Repeat")
+    {
+        std::string Button;
+        *Data >> Button;
+        bool Enabled;
+        *Data >> Enabled;
+        if(!Set_Controller_Button_Repeat) throw std::runtime_error("Input plugin does not support Set_Controller_Button_Repeat");
+        Set_Controller_Button_Repeat(Button, Enabled);
+    }
+    else if(Command == "Set_Controller_Button_Repeat_For")
+    {
+        int Controller;
+        *Data >> Controller;
+        std::string Button;
+        *Data >> Button;
+        bool Enabled;
+        *Data >> Enabled;
+        if(!Set_Controller_Button_Repeat_For) throw std::runtime_error("Input plugin does not support Set_Controller_Button_Repeat_For");
+        Set_Controller_Button_Repeat_For(Controller, Button, Enabled);
     }
     else if(Command == "Set_Key_Down")
     {

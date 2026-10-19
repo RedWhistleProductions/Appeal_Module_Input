@@ -211,3 +211,28 @@ extern "C" void Set_Controller_Axis_Range(int Controller, std::string Axis, int 
 {
 	std::cout << "Set_Controller_Axis_Range " << Controller << " " << Axis << " " << Min << " " << Max << " " << Function << std::endl;
 }
+extern "C" bool Set_Controller_Deadzone(int Percent)
+{
+    std::cout << "Set_Controller_Deadzone" << " " << Percent << std::endl;
+    return Percent >= 0 && Percent <= 99;
+}
+
+extern "C" void Set_Key_Repeat(std::string Key, bool Enabled)
+{
+    std::cout << "Set_Key_Repeat" << " " << Key << " " << Enabled << std::endl;
+}
+
+extern "C" void Set_Mouse_Repeat(std::string Button, bool Enabled)
+{
+    std::cout << "Set_Mouse_Repeat" << " " << Button << " " << Enabled << std::endl;
+}
+
+extern "C" void Set_Controller_Button_Repeat(std::string Button, bool Enabled)
+{
+    std::cout << "Set_Controller_Button_Repeat" << " " << Button << " " << Enabled << std::endl;
+}
+
+extern "C" void Set_Controller_Button_Repeat_For(int Controller, std::string Button, bool Enabled)
+{
+    std::cout << "Set_Controller_Button_Repeat_For" << " " << Controller << " " << Button << " " << Enabled << std::endl;
+}
