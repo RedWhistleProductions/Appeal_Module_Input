@@ -1,5 +1,11 @@
 #include "Plugin.h"
 #include "Data_Source.h"
+#include <stdexcept>
+
+bool (*Set_Focus)(std::string Target) = nullptr;
+void (*Toggle_Focus)() = nullptr;
+bool (*Set_Focus_Mouse_Button)(std::string Button) = nullptr;
+std::string (*Focus)() = nullptr;
 
 bool (*Set_Controller_Deadzone)(int Percent);
 void (*Set_Key_Repeat)(std::string Key, bool Enabled);
@@ -112,6 +118,10 @@ extern "C" void Init(std::string Name)
     Assign("Set_Controller_Button_Up_For", Set_Controller_Button_Up_For);
     Assign("Set_Controller_Axis_For", Set_Controller_Axis_For);
     Assign("Set_Controller_Axis_Range", Set_Controller_Axis_Range);
+    Assign("Set_Focus", Set_Focus);
+    Assign("Toggle_Focus", Toggle_Focus);
+    Assign("Set_Focus_Mouse_Button", Set_Focus_Mouse_Button);
+    Assign("Focus", Focus);
 }
 
 extern "C" void Set_Function_Runner(void (*Run_Function)(std::string), void (*Run_Analog_Function)(std::string, int))
@@ -139,6 +149,29 @@ extern "C" void Interpreter(Data_Source *Data)
         std::string Name;
         *Data >> Name;
         Init(Name);
+    }
+    else if(Command == "Set_Focus")
+    {
+        std::string Target;
+        *Data >> Target;
+        if(!Set_Focus) throw std::runtime_error("Input plugin does not support Set_Focus");
+        if(!Set_Focus(Target)) throw std::runtime_error("Input focus must be Game or GUI");
+    }
+    else if(Command == "Set_Focus_Mouse_Button")
+    {
+        std::string Button; *Data >> Button;
+        if(!Set_Focus_Mouse_Button) throw std::runtime_error("Input plugin does not support Set_Focus_Mouse_Button");
+        if(!Set_Focus_Mouse_Button(Button)) throw std::runtime_error("Focus mouse button must be Middle or None");
+    }
+    else if(Command == "Toggle_Focus")
+    {
+        if(!Toggle_Focus) throw std::runtime_error("Input plugin does not support Toggle_Focus");
+        Toggle_Focus();
+    }
+    else if(Command == "Focus")
+    {
+        if(!Focus) throw std::runtime_error("Input plugin does not support Focus");
+        Data->Return_Value(Focus());
     }
     else if(Command == "Debug")
     {

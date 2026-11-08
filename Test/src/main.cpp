@@ -1,4 +1,24 @@
 #include <iostream>
+#include <string>
+
+std::string Input_Focus = "Game";
+extern "C" bool Set_Focus(std::string Target)
+{
+    std::cout << "Set_Focus " << Target << std::endl;
+    if(Target != "Game" && Target != "GUI") return false;
+    Input_Focus = Target;
+    return true;
+}
+extern "C" void Toggle_Focus()
+{
+    std::cout << "Toggle_Focus" << std::endl;
+    Input_Focus = Input_Focus == "Game" ? "GUI" : "Game";
+}
+extern "C" std::string Focus()
+{
+    std::cout << "Focus" << std::endl;
+    return Input_Focus;
+}
 
 // Turn Debug On or Off
 extern "C" void Debug(bool Enable)

@@ -21,7 +21,7 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-$(OBJDIR)/%.o: ./src/%.cpp
+$(OBJDIR)/%.o: ./src/%.cpp $(wildcard src/*.h)
 	@mkdir -p $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
